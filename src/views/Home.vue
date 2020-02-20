@@ -2,6 +2,7 @@
   <div class="container">
     <div class="home">
       <h1>{{ message }}</h1>
+
       <div class="new-form">
         Name: <input type="text" v-model="newProductName"> 
         Description: <input type="text" v-model="newProductDescription"> 
@@ -12,49 +13,48 @@
         <br>
       </div>
       <br>
-      <div class="row">
-        <div v-for="product in products">
-            <div class="col-sm-4 mt-3">
-              <div class="card">
-                <img v-on:click="showProduct(product)" v-bind:src="product.image_url" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">{{ product.name }}</h5>
-                  <div class="show-page" v-if="product === currentProduct">
-                    <p class="card-text">Description: {{ product.description }} </p>
-                    <p class="card-text">Price (tax included): {{ product.formatted.total }} </p>
-                    <br>
-                    <div class="edit-form">
+      
+      <div v-for="product in products">
+      
+        <img v-on:click="showProduct(product)" v-bind:src="product.image_url">
+        
+        <h5>{{ product.name }}</h5>
+        <div v-if="product === currentProduct">
+          <p >Description: {{ product.description }} </p>
+          <p >Price (tax included): {{ product.formatted.total }} </p>
+          <br>
+          <div class="edit-form">
 
-                      <h4>Edit Product</h4>
+            <h4>Edit Product</h4>
 
-                      <div>
-                        Name: <input type="text" v-model="product.name">
-                      </div>
-
-                      <div>
-                        Description: <input type="text" v-model="product.description">
-                      </div>
-
-                      <div>
-                        Image: <input type="text" v-model="product.image_url">
-                      </div>
-
-                      <div>
-                        Total: <input type="text" v-model="product.total">
-                      </div>
-
-                      <button v-on:click="updateProduct(product)" class="btn btn-primary">Update</button>
-                    </div>
-                    <br>
-                    <div class="destroy-action">
-                      <button v-on:click="destroyProduct(product)" class="btn btn-primary">DESTROY IT!</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              Name: <input type="text" v-model="product.name">
             </div>
+
+            <div>
+              Description: <input type="text" v-model="product.description">
+            </div>
+
+            <div>
+              Image: <input type="text" v-model="product.image_url">
+            </div>
+
+            <div>
+              Total: <input type="text" v-model="product.total">
+            </div>
+
+            <button v-on:click="updateProduct(product)">Update</button>
+          </div>
+          <br>
+          <div class="destroy-action">
+            <button v-on:click="destroyProduct(product)">DESTROY IT!</button>
+          </div>
+
         </div>
+
       </div>
+      
+    </div>
 
     </div>
   </div>
